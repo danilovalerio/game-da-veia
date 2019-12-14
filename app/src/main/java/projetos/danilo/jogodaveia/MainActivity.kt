@@ -38,14 +38,14 @@ class MainActivity : AppCompatActivity() {
     //pega a posicao do botão
     fun btnPosicao(view: View) = when(view.id){
         R.id.btn1 -> jogar(1, view as Button)
-        R.id.btn2 -> jogar(1, view as Button)
-        R.id.btn3 -> jogar(1, view as Button)
-        R.id.btn4 -> jogar(1, view as Button)
-        R.id.btn5 -> jogar(1, view as Button)
-        R.id.btn6 -> jogar(1, view as Button)
-        R.id.btn7 -> jogar(1, view as Button)
-        R.id.btn8 -> jogar(1, view as Button)
-        R.id.btn9 -> jogar(1, view as Button)
+        R.id.btn2 -> jogar(2, view as Button)
+        R.id.btn3 -> jogar(3, view as Button)
+        R.id.btn4 -> jogar(4, view as Button)
+        R.id.btn5 -> jogar(5, view as Button)
+        R.id.btn6 -> jogar(6, view as Button)
+        R.id.btn7 -> jogar(7, view as Button)
+        R.id.btn8 -> jogar(8, view as Button)
+        R.id.btn9 -> jogar(9, view as Button)
         else -> jogar(0, view as Button)
     }
 
