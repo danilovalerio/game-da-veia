@@ -80,4 +80,10 @@ class MainActivity : AppCompatActivity() {
             2 -> Toast.makeText(this, "Parabéns: Jogador 2, VOCÊ VENCEU!", Toast.LENGTH_SHORT).show()
         }
     }
+
+    fun reiniciarJogo(view: View){
+        jogadorUm.clear()
+        jogadorDois.clear()
+        setContentView(R.layout.activity_main)
+    }
 }
