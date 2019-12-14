@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    val jogadorUm = arrayListOf<Int>()
-    val jogadorDois = arrayListOf<Int>()
-    var jogadorDaVez = 1
+    private val jogadorUm = arrayListOf<Int>()
+    private val jogadorDois = arrayListOf<Int>()
+    private var jogadorDaVez = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
