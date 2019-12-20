@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-<!--    Layout personalizado para os botões do jogo da velha -->
+    <!--    Layout personalizado para os botões do jogo da velha -->
     <style name="BtnGame" parent="android:Widget.Button.Small">
         <item name="android:textAppearance">?android:textAppearanceLarge</item>
         <item name="android:textColor">@color/colorAccent</item>
@@ -19,5 +19,16 @@
         <item name="android:layout_margin">3dp</item>
         <item name="android:onClick">btnPosicao</item>
     </style>
+
+    <!-- Texto em destaque para ressaltar Jogador da Vez -->
+    <style name="TextoDestacado" parent="android:Widget.TextView">
+        <item name="android:textAppearance">?android:textAllCaps</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+
 
 </resources>

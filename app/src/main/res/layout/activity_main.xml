@@ -9,13 +9,60 @@
     tools:context=".MainActivity">
 
 
-    <ImageView
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:src="@drawable/jogo_da_velha"-->
+    <!--android:adjustViewBounds="false"-->
+    <!--android:scaleType="centerInside"-->
+    <!--android:contentDescription="@string/descricao_titulo_jogo_da_velha" />-->
+
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:src="@drawable/jogo_da_velha"
-        android:adjustViewBounds="false"
-        android:scaleType="centerInside"/>
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_JogadorDavez"
+                style="@style/TextoDestacado"
+                android:background="@drawable/round_background_destaque"
+                android:textAlignment="center"
+                android:text="@string/jogador_atual"
+                tools:text="Jogador da vez: Joao Maria"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/placarJogador"
+                android:text="@string/valores_placar_do_jogo"
+                android:textAlignment="center"
+                android:layout_marginTop="2dp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                tools:text="Joao Silva 2 x 0 Maria Santos"/>
+        </TableRow>
+
+
+
+    </TableLayout>
+
+
 
     <TableLayout
         android:layout_width="match_parent"
@@ -98,14 +145,13 @@
         android:id="@+id/btnReiniciar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:background="@color/colorPrimary"
         android:textAppearance="?android:textAppearanceLarge"
-        android:text="REINICAR"
+        android:text="@string/texto_botao_reinicar"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:onClick="reiniciarJogo"/>
-
 
 
 

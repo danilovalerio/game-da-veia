@@ -3,22 +3,53 @@ package projetos.danilo.jogodaveia
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gameplayveia.alertDialogPersonal
+import com.example.gameplayveia.toastLong
+import com.example.gameplayveia.toastShort
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val jogadorUm = arrayListOf<Int>()
     private val jogadorDois = arrayListOf<Int>()
+    private var nomeJogadorUm: String? = "X"
+    private var nomeJogadorDois: String? = "O"
+    private var pontuacaoTotalJogadorUm: Int = 0
+    private var pontuacaoTotalJogadorDois: Int = 0
     private var jogadorDaVez = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val extras = intent.extras
+
+        if (extras != null) {
+            nomeJogadorUm = extras!!.getString("nomeJogadorUm")
+            nomeJogadorDois = extras!!.getString("nomeJogadorDois")
+
+            atualizaNomeDoJogadorAtual(1)
+
+            val msg = nomeJogadorUm+" X "+nomeJogadorDois
+
+            alertDialogPersonal(this, "PLAYERS", msg,null, null)
+
+            toastLong(this, nomeJogadorUm+" X "+nomeJogadorDois)
+
+        } else {
+
+            alertDialogPersonal(this, "NOMES NÃO DEFINIDOS",
+                getString(R.string.texto_players_sem_nomes), "Sim", "Não")
+
+            tv_JogadorDavez.setText(getString(R.string.jogador_atual, nomeJogadorUm))
+        }
+
+        placarJogador.setText(resources.getString(R.string.placar_do_jogo, nomeJogadorUm, pontuacaoTotalJogadorUm.toString(), pontuacaoTotalJogadorDois.toString(), nomeJogadorDois))
     }
 
-    fun jogar(posicao: Int, btnSelecionado: Button){
-        if(jogadorDaVez == 1){
+    fun jogar(posicao: Int, btnSelecionado: Button) {
+        if (jogadorDaVez == 1) {
             btnSelecionado.text = "X"
             btnSelecionado.setBackgroundResource(R.color.colorJogadorUm)
             jogadorUm.add(posicao)
@@ -29,6 +60,8 @@ class MainActivity : AppCompatActivity() {
             jogadorDois.add(posicao)
             jogadorDaVez = 1
         }
+
+        atualizaNomeDoJogadorAtual(jogadorDaVez)
 
         btnSelecionado.isClickable = false
         verificaResultado()
@@ -75,14 +108,32 @@ class MainActivity : AppCompatActivity() {
         }
 
         when(vencedor){
-            1 -> Toast.makeText(this, "Parabéns: Jogador 1, VOCÊ VENCEU!", Toast.LENGTH_SHORT).show()
-            2 -> Toast.makeText(this, "Parabéns: Jogador 2, VOCÊ VENCEU!", Toast.LENGTH_SHORT).show()
+            1 -> {
+                pontuacaoTotalJogadorUm++
+                toastShort(this, "Parabéns: $nomeJogadorUm, VOCÊ VENCEU!")
+            }
+            2 -> {
+                pontuacaoTotalJogadorDois++
+                toastShort(this, "Parabéns: $nomeJogadorDois, VOCÊ VENCEU!")
+            }
         }
     }
 
-    fun reiniciarJogo(view: View){
-        jogadorUm.clear()
-        jogadorDois.clear()
+    fun reiniciarJogo(view: View) {
         setContentView(R.layout.activity_main)
+
+    }
+
+    fun atualizaNomeDoJogadorAtual(jogadorDaVez: Int){
+
+        when (jogadorDaVez) {
+            1 -> {
+                tv_JogadorDavez.setText(resources.getString(R.string.jogador_atual, nomeJogadorUm))
+            }
+
+            2 -> {
+                tv_JogadorDavez.setText(resources.getString(R.string.jogador_atual, nomeJogadorDois))
+            }
+        }
     }
 }

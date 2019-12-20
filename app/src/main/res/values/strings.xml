@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Jogo da Véia</string>
+    <string name="app_name">Game Play da Veia</string>
+    <string name="campo_obrigatorio">Campo obrigatório!</string>
+    <string name="jogador_atual">%1$s sua vez!</string>
+    <string name="texto_placar_do_jogo">Placar do Jogo</string>
+    <string name="valores_placar_do_jogo">Placar do Jogo</string>
+    <string name="texto_botao_reinicar">REINICAR</string>
+    <string name="placar_do_jogo">%1$s %2$s X %3$s %4$s</string>
+    <string name="descricao_titulo_jogo_da_velha">Título Jogo da Velha</string>
+    <string name="texto_jogar">JOGAR</string>
+    <string name="texto_players_sem_nomes">Os jogadores estão sem nomes, assim, serão adotados player X (xis) e O (bola).</string>
 </resources>
