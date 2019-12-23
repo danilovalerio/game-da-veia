@@ -4,7 +4,7 @@
     <string name="jogador_atual">%1$s sua vez!</string>
     <string name="texto_placar_do_jogo">Placar do Jogo</string>
     <string name="valores_placar_do_jogo">Placar do Jogo</string>
-    <string name="texto_botao_reinicar">REINICAR</string>
+    <string name="texto_botao_reinicar">REINICIAR</string>
     <string name="placar_do_jogo">%1$s %2$s X %3$s %4$s</string>
     <string name="descricao_titulo_jogo_da_velha">Título Jogo da Velha</string>
     <string name="texto_jogar">JOGAR</string>

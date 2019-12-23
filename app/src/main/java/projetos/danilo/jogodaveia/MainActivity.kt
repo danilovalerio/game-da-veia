@@ -1,10 +1,11 @@
 package projetos.danilo.jogodaveia
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.gameplayveia.alertDialogPersonal
 import com.example.gameplayveia.toastLong
 import com.example.gameplayveia.toastShort
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,6 +24,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        parseExtras()
+
+        //todo: Trocar a parte central dos botões por um fragment, paara reiniciar somente o fragment
+
+
+    }
+
+    private fun parseExtras(){
         val extras = intent.extras
 
         if (extras != null) {
@@ -31,21 +40,28 @@ class MainActivity : AppCompatActivity() {
 
             atualizaNomeDoJogadorAtual(1)
 
-            val msg = nomeJogadorUm+" X "+nomeJogadorDois
-
-            alertDialogPersonal(this, "PLAYERS", msg,null, null)
-
-            toastLong(this, nomeJogadorUm+" X "+nomeJogadorDois)
+//            val msg = nomeJogadorUm+" X "+nomeJogadorDois
+//            alertDialogPersonal(this, "PLAYERS", msg,null, null)
+//            toastLong(this, nomeJogadorUm+" X "+nomeJogadorDois)
 
         } else {
+//            AlertDialog.Builder(this)
+//                .setTitle("NOMES NÃO DEFINIDOS")
+//                .setMessage(getString(R.string.texto_players_sem_nomes))
+//                .setPositiveButton("Sim",
+//                    { dialog, id ->
+//                        toastLong(this, "CLICOU NO SIM")
+//                    })
+//                .setNegativeButton("Não", { dialog, id ->
+//                    toastLong(this, "CLICOU NO NÃO")
+//                })
+//                .show()
 
-            alertDialogPersonal(this, "NOMES NÃO DEFINIDOS",
-                getString(R.string.texto_players_sem_nomes), "Sim", "Não")
-
-            tv_JogadorDavez.setText(getString(R.string.jogador_atual, nomeJogadorUm))
+//            tv_JogadorDavez.setText(getString(R.string.jogador_atual, nomeJogadorUm))
+            atualizaNomeDoJogadorAtual(1)
         }
 
-        placarJogador.setText(resources.getString(R.string.placar_do_jogo, nomeJogadorUm, pontuacaoTotalJogadorUm.toString(), pontuacaoTotalJogadorDois.toString(), nomeJogadorDois))
+        placarJogo.setText(resources.getString(R.string.placar_do_jogo, nomeJogadorUm, pontuacaoTotalJogadorUm.toString(), pontuacaoTotalJogadorDois.toString(), nomeJogadorDois))
     }
 
     fun jogar(posicao: Int, btnSelecionado: Button) {
@@ -82,6 +98,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun verificaResultado(){
+        var vencedor = -1
         val lin1 = listOf(1,2,3)
         val lin2 = listOf(4,5,6)
         val lin3 = listOf(7,8,9)
@@ -92,8 +109,6 @@ class MainActivity : AppCompatActivity() {
 
         val diag1 = listOf(1,5,9)
         val diag2 = listOf(3,5,7)
-
-        var vencedor = -1
 
         if(jogadorUm.containsAll(lin1) || jogadorUm.containsAll(lin2) || jogadorUm.containsAll(lin3) ||
             jogadorUm.containsAll(col1) || jogadorUm.containsAll(col2) || jogadorUm.containsAll(col3) ||
@@ -117,22 +132,31 @@ class MainActivity : AppCompatActivity() {
                 toastShort(this, "Parabéns: $nomeJogadorDois, VOCÊ VENCEU!")
             }
         }
+
+        Log.i("PONTUACAO", "jogador 1: "+pontuacaoTotalJogadorUm+" X "+ pontuacaoTotalJogadorDois+" :jogador 2")
+        placarJogo.setText(resources.getString(R.string.placar_do_jogo, nomeJogadorUm, pontuacaoTotalJogadorUm.toString(), pontuacaoTotalJogadorDois.toString(), nomeJogadorDois))
+
     }
 
     fun reiniciarJogo(view: View) {
-        setContentView(R.layout.activity_main)
-
+        Log.i("PONTUACAO", view.toString())
+        jogadorUm.clear()
+        jogadorDois.clear()
+        btn1.setText("")
+        btn1.isClickable = true
+//        setContentView(R.layout.activity_main)
+        parseExtras()
     }
 
     fun atualizaNomeDoJogadorAtual(jogadorDaVez: Int){
 
         when (jogadorDaVez) {
             1 -> {
-                tv_JogadorDavez.setText(resources.getString(R.string.jogador_atual, nomeJogadorUm))
+                tv_JogadorDaVez.setText(resources.getString(R.string.jogador_atual, nomeJogadorUm))
             }
 
             2 -> {
-                tv_JogadorDavez.setText(resources.getString(R.string.jogador_atual, nomeJogadorDois))
+                tv_JogadorDaVez.setText(resources.getString(R.string.jogador_atual, nomeJogadorDois))
             }
         }
     }

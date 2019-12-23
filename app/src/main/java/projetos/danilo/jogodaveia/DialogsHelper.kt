@@ -1,6 +1,7 @@
 package com.example.gameplayveia
 
 import android.content.Context
+import android.content.DialogInterface
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
@@ -18,8 +19,13 @@ fun alertDialogPersonal(ctx: Context, title: String, message: String, btnPositiv
         AlertDialog.Builder(ctx)
             .setTitle(title)
             .setMessage(message)
-            .setPositiveButton(btnPositive, null)
-            .setNegativeButton(btnNegative, null)
+            .setPositiveButton(btnPositive,
+                 { dialog, id ->
+                     toastLong(ctx, "CLICOU NO SIM")
+                })
+            .setNegativeButton(btnNegative, { dialog, id ->
+                    toastLong(ctx, "CLICOU NO SIM")
+            })
             .show()
     } else if (btnPositive != null && btnNegative == null) {
         AlertDialog.Builder(ctx)
@@ -33,5 +39,4 @@ fun alertDialogPersonal(ctx: Context, title: String, message: String, btnPositiv
             .setMessage(message)
             .show()
     }
-
 }
