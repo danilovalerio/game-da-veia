@@ -1,14 +1,15 @@
-package projetos.danilo.jogodaveia
+package com.example.gameplayveia
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.gameplayveia.toastLong
-import com.example.gameplayveia.toastShort
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.activity_main.*
+import projetos.danilo.jogodaveia.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     private var pontuacaoTotalJogadorUm: Int = 0
     private var pontuacaoTotalJogadorDois: Int = 0
     private var jogadorDaVez = 1
+    private val FRAGMENT_TABULEIRO = "TABULEIRO"
+    private val frTabuleiroFragment = TabuleiroFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,16 +30,16 @@ class MainActivity : AppCompatActivity() {
         parseExtras()
 
         //todo: Trocar a parte central dos botões por um fragment, paara reiniciar somente o fragment
-
-
+        //implementando fragment
+        managerFragment(frTabuleiroFragment, FRAGMENT_TABULEIRO)
     }
 
     private fun parseExtras(){
         val extras = intent.extras
 
         if (extras != null) {
-            nomeJogadorUm = extras!!.getString("nomeJogadorUm")
-            nomeJogadorDois = extras!!.getString("nomeJogadorDois")
+            nomeJogadorUm = extras.getString("nomeJogadorUm")
+            nomeJogadorDois = extras.getString("nomeJogadorDois")
 
             atualizaNomeDoJogadorAtual(1)
 
@@ -135,17 +138,15 @@ class MainActivity : AppCompatActivity() {
 
         Log.i("PONTUACAO", "jogador 1: "+pontuacaoTotalJogadorUm+" X "+ pontuacaoTotalJogadorDois+" :jogador 2")
         placarJogo.setText(resources.getString(R.string.placar_do_jogo, nomeJogadorUm, pontuacaoTotalJogadorUm.toString(), pontuacaoTotalJogadorDois.toString(), nomeJogadorDois))
-
     }
 
     fun reiniciarJogo(view: View) {
         Log.i("PONTUACAO", view.toString())
         jogadorUm.clear()
         jogadorDois.clear()
-        btn1.setText("")
-        btn1.isClickable = true
-//        setContentView(R.layout.activity_main)
         parseExtras()
+        val reloadTabuleiroFragment = TabuleiroFragment()
+        managerFragment(reloadTabuleiroFragment, FRAGMENT_TABULEIRO)
     }
 
     fun atualizaNomeDoJogadorAtual(jogadorDaVez: Int){
@@ -159,5 +160,14 @@ class MainActivity : AppCompatActivity() {
                 tv_JogadorDaVez.setText(resources.getString(R.string.jogador_atual, nomeJogadorDois))
             }
         }
+    }
+
+    //Gerenciador de fragments
+    private fun managerFragment(fragment: Fragment, tag: String){
+        val fragmentManager: FragmentManager = getSupportFragmentManager()
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.containerForFragment, fragment, tag)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 }

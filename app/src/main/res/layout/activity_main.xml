@@ -10,13 +10,13 @@
 
 
     <!--<ImageView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:src="@drawable/jogo_da_velha"-->
-    <!--android:adjustViewBounds="false"-->
-    <!--android:scaleType="centerInside"-->
-    <!--android:contentDescription="@string/descricao_titulo_jogo_da_velha" />-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:src="@drawable/jogo_da_velha"-->
+        <!--android:adjustViewBounds="false"-->
+        <!--android:scaleType="centerInside"-->
+        <!--android:contentDescription="@string/descricao_titulo_jogo_da_velha" />-->
 
     <TableLayout
         android:layout_width="match_parent"
@@ -56,6 +56,7 @@
                 android:textStyle="bold"
                 android:textSize="10sp"
                 tools:text="Joao Silva 2 x 0 Maria Santos"/>
+
         </TableRow>
 
 
@@ -63,95 +64,111 @@
     </TableLayout>
 
 
+    <!--<fragment-->
+        <!--android:id="@+id/mainFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--class="com.example.gameplayveia.TabuleiroFragment"-->
+        <!--tools:layout="@layout/fragment_main">-->
+    <!--</fragment>-->
 
-    <TableLayout
+    <FrameLayout
+        android:id="@+id/containerForFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
-        android:gravity="center">
+        android:layout_weight="1" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
 
-            <Button
-                android:id="@+id/btn1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
-            <Button
-                android:id="@+id/btn2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
-            <Button
-                android:id="@+id/btn3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
 
-        </TableRow>
+    <!--<TableLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="6"-->
+        <!--android:gravity="center">-->
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+        <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center">-->
 
-            <Button
-                android:id="@+id/btn4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
-            <Button
-                android:id="@+id/btn5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
-            <Button
-                android:id="@+id/btn6"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
+            <!--<Button-->
+                <!--android:id="@+id/btn1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
+            <!--<Button-->
+                <!--android:id="@+id/btn2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
+            <!--<Button-->
+                <!--android:id="@+id/btn3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
 
-        </TableRow>
+        <!--</TableRow>-->
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+        <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center">-->
 
-            <Button
-                android:id="@+id/btn7"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
-            <Button
-                android:id="@+id/btn8"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
-            <Button
-                android:id="@+id/btn9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/BtnGame"/>
+            <!--<Button-->
+                <!--android:id="@+id/btn4"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
+            <!--<Button-->
+                <!--android:id="@+id/btn5"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
+            <!--<Button-->
+                <!--android:id="@+id/btn6"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
 
-        </TableRow>
+        <!--</TableRow>-->
 
-    </TableLayout>
+        <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center">-->
+
+            <!--<Button-->
+                <!--android:id="@+id/btn7"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
+            <!--<Button-->
+                <!--android:id="@+id/btn8"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
+            <!--<Button-->
+                <!--android:id="@+id/btn9"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--style="@style/BtnGame"/>-->
+
+        <!--</TableRow>-->
+
+    <!--</TableLayout>-->
 
     <Button
         android:id="@+id/btnReiniciar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="100dp"
         android:background="@color/colorPrimary"
         android:textAppearance="?android:textAppearanceLarge"
         android:text="@string/texto_botao_reinicar"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:onClick="reiniciarJogo"/>
+
 
 
 

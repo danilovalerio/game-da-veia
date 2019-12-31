@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CadastraJogadoresActivity">
+        <activity android:name="com.example.gameplayveia.fragments.NavigationActivity"
+            android:label="NavigationActivity">
+        </activity>
+
+        <activity android:name="com.example.gameplayveia.CadastraJogadoresActivity">
 
         </activity>
-        <activity android:name=".MainActivity">
+
+        <activity android:name="com.example.gameplayveia.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

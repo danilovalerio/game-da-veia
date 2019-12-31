@@ -1,10 +1,11 @@
-package projetos.danilo.jogodaveia
+package com.example.gameplayveia
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_cadastra_jogadores.*
+import projetos.danilo.jogodaveia.R
 
 class CadastraJogadoresActivity : AppCompatActivity() {
 

@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@android:color/holo_orange_dark"
-        android:text="JOGAR"
+        android:text="@string/texto_jogar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/jogadorDois" />
