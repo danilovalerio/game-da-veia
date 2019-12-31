@@ -1,9 +1,11 @@
 package com.example.gameplayveia
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -42,28 +44,9 @@ class MainActivity : AppCompatActivity() {
             nomeJogadorDois = extras.getString("nomeJogadorDois")
 
             atualizaNomeDoJogadorAtual(1)
-
-//            val msg = nomeJogadorUm+" X "+nomeJogadorDois
-//            alertDialogPersonal(this, "PLAYERS", msg,null, null)
-//            toastLong(this, nomeJogadorUm+" X "+nomeJogadorDois)
-
         } else {
-//            AlertDialog.Builder(this)
-//                .setTitle("NOMES NÃO DEFINIDOS")
-//                .setMessage(getString(R.string.texto_players_sem_nomes))
-//                .setPositiveButton("Sim",
-//                    { dialog, id ->
-//                        toastLong(this, "CLICOU NO SIM")
-//                    })
-//                .setNegativeButton("Não", { dialog, id ->
-//                    toastLong(this, "CLICOU NO NÃO")
-//                })
-//                .show()
-
-//            tv_JogadorDavez.setText(getString(R.string.jogador_atual, nomeJogadorUm))
             atualizaNomeDoJogadorAtual(1)
         }
-
         placarJogo.setText(resources.getString(R.string.placar_do_jogo, nomeJogadorUm, pontuacaoTotalJogadorUm.toString(), pontuacaoTotalJogadorDois.toString(), nomeJogadorDois))
     }
 
@@ -86,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         verificaResultado()
     }
 
-    //pega a posicao do botão
+    //pega a posicão do botão pressionado e envia para jogar
     fun btnPosicao(view: View) = when(view.id){
         R.id.btn1 -> jogar(1, view as Button)
         R.id.btn2 -> jogar(2, view as Button)
@@ -128,12 +111,43 @@ class MainActivity : AppCompatActivity() {
         when(vencedor){
             1 -> {
                 pontuacaoTotalJogadorUm++
-                toastShort(this, "Parabéns: $nomeJogadorUm, VOCÊ VENCEU!")
+//                toastShort(this, "Parabéns: $nomeJogadorUm, VOCÊ VENCEU!")
+//                val resp = alertDialogPersonal(this,"FIM DO JOGO",
+//                    "Parabéns: $nomeJogadorUm, VOCÊ VENCEU!",
+//                    "SIM",
+//                    "NÃO"
+//                    )
+//
+//                toastLong(this,resp.toString())
             }
             2 -> {
                 pontuacaoTotalJogadorDois++
                 toastShort(this, "Parabéns: $nomeJogadorDois, VOCÊ VENCEU!")
             }
+        }
+
+        val nomeVencedor = if(vencedor == 1) nomeJogadorUm else nomeJogadorDois
+
+        if(vencedor != -1){
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Parabéns: $nomeVencedor, VOCÊ VENCEU!")
+            builder.setMessage("\n\nJOGAR OUTRA PARTIDA?")
+            builder.setPositiveButton("Sim") { dialog, id ->
+                //Reinicia o Fragment para nova partida
+                reiniciarJogoNoCliquePositivo()
+                //Toast.makeText(this, "Clicou no Sim", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("Não") { dialog, id ->
+                //Encerrar o app ao clicar em não
+                //Toast.makeText(this, "Clicou no Não", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, CadastraJogadoresActivity::class.java)
+
+//                intent.putExtra("nomeJogadorUm", jogadorUm.text.toString())
+//                intent.putExtra("nomeJogadorDois", jogadorDois.text.toString())
+                startActivity(intent)
+                finish()
+            }
+            builder.show()
         }
 
         Log.i("PONTUACAO", "jogador 1: "+pontuacaoTotalJogadorUm+" X "+ pontuacaoTotalJogadorDois+" :jogador 2")
@@ -142,6 +156,14 @@ class MainActivity : AppCompatActivity() {
 
     fun reiniciarJogo(view: View) {
         Log.i("PONTUACAO", view.toString())
+        jogadorUm.clear()
+        jogadorDois.clear()
+        parseExtras()
+        val reloadTabuleiroFragment = TabuleiroFragment()
+        managerFragment(reloadTabuleiroFragment, FRAGMENT_TABULEIRO)
+    }
+
+    fun reiniciarJogoNoCliquePositivo() {
         jogadorUm.clear()
         jogadorDois.clear()
         parseExtras()
@@ -170,4 +192,6 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
+
 }
+
